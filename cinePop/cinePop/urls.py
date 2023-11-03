@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app_inicial_e_cadastro import views
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('usuarios', views.usuarios, name='listagem_usuarios'),
     path('admin/', admin.site.urls),
+    path('accounts/', include("django.contrib.auth.urls")),
 ]
