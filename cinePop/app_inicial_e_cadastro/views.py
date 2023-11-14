@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Usuario
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
@@ -39,11 +38,11 @@ def login(request):
         user = authenticate(username=username, password=senha)
 
         if user:
-            return HttpResponse('Autenticado')
+            return render(request, 'paginaInicial/home.html')
         else:
             return HttpResponse('Usuário ou senha errados')
 
-def usuarios(request):
+"""def usuarios(request):
     # Salvar os dados da tela para o banco de dados
     novo_usuario = Usuario()
     novo_usuario.nome = request.POST.get('nome')
@@ -56,7 +55,4 @@ def usuarios(request):
     }
     # Retornar os dados para a página de listagem de usuários
     return render(request, 'adm/listagem_usuarios.html',usuarios)
-
-def listagem_usuarios(request):
-    return render(request, 'adm/listagem_usuarios.html')
-
+"""
