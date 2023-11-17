@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
 from django.db import models
+
 """
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
@@ -58,51 +58,54 @@ class FilmeCategoria(models.Model):
     # comentario = models.TextField()
 
 # Inicio do Mysql
+class Nacionalidade(models.Model):
+    nacionalidade = models.CharField(max_length=50, unique=True, default='Desconhecido')
+    id_nacionalidade = models.CharField(max_length=2, primary_key=True)
 
 class Categoria(models.Model):
-    id_cat = models.IntegerField(primary_key=True)
-    nome_cat = models.CharField(max_length=50, null=False)
-
-class Nacionalidade(models.Model):
-    id_nacionalidade = models.IntegerField(primary_key=True)
-    nacionalidade = models.CharField(max_length=50, null=False)
+    id_cat = models.AutoField(primary_key=True, default=1)
+    nome_cat = models.CharField(max_length=50)
 
 class Diretor(models.Model):
-    id_diretor = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=50, null=False)
-    data_nascimento = models.DateField(null=False)
+    nome = models.CharField(max_length=50)
+    data_nascimento = models.DateField()
     nacionalidade = models.ForeignKey(Nacionalidade, on_delete=models.CASCADE)
+    id_diretor = models.AutoField(primary_key=True, default=1)
 
 class Ator(models.Model):
-    id_ator = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=50, null=False)
-    data_nascimento = models.DateField(null=False)
+    nome = models.CharField(max_length=50)
+    data_nascimento = models.DateField()
     nacionalidade = models.ForeignKey(Nacionalidade, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True, default=None)
 
 class Filme(models.Model):
-    id_filme = models.AutoField(primary_key=True)
-    titulo = models.CharField(max_length=50, null=False)
-    sinopse = models.CharField(max_length=300, null=True)
+    titulo = models.CharField(max_length=50)
+    sinopse = models.CharField(max_length=300)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    ano_lancamento = models.DateField(null=False)
-    class_indicativa = models.CharField(max_length=5, null=False)
+    ano_lancamento = models.DateField()
+    class_indicativa = models.CharField(max_length=5)
     diretor = models.ForeignKey(Diretor, on_delete=models.CASCADE)
-    idioma = models.CharField(max_length=50, null=True)
-    url_capa = models.CharField(max_length=100, null=True)
-    url_trailer = models.CharField(max_length=100, null=True)
+    idioma = models.CharField(max_length=50)
+    url_capa = models.CharField(max_length=100)
+    url_trailer = models.CharField(max_length=100)
+    id_filme = models.AutoField(primary_key=True, default=1)
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=50, null=False)
-    senha = models.CharField(max_length=20, null=False)
-    email = models.EmailField(max_length=60, null=False)
+    nome = models.CharField(max_length=50)
+    senha = models.CharField(max_length=20)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.nome
 
 class Avaliacao(models.Model):
     id_avaliacao = models.AutoField(primary_key=True)
     filme = models.ForeignKey(Filme, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    classificacao = models.CharField(max_length=1, choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], null=False)
-    comentario = models.CharField(max_length=200, null=True)
+    classificacao = models.CharField(max_length=1, choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')])
+    comentario = models.CharField(max_length=200)
+
 
 
 

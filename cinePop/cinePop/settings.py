@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_inicial_e_cadastro',
+    'cinePop',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'cinePop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'projeto',
+        'NAME': 'integrador',
         'USER': 'gabriel',
         'PASSWORD': 'Rn3uPJb2@',
         'HOST': 'localhost',
@@ -107,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

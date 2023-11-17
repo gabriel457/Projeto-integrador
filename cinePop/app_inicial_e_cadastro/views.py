@@ -48,11 +48,4 @@ def login(request):
     novo_usuario.nome = request.POST.get('nome')
     novo_usuario.email = request.POST.get('email')
     novo_usuario.senha = request.POST.get('senha')
-    novo_usuario.save()
-    # Exibir todos os usuários já cadastrados em uma nova página
-    usuarios = {
-        'usuarios': Usuario.objects.all()
-    }
-    # Retornar os dados para a página de listagem de usuários
-    return render(request, 'adm/listagem_usuarios.html',usuarios)
-"""
+    novo_usuario.save()"""
